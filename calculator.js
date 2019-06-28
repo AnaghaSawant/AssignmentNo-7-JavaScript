@@ -10,7 +10,7 @@ function Calculator()
 		number_array = array_to_string.match(reg_ex)
 		console.log(number_array)
 		max = Number(number_array[0]);
-		for(var i = 1 ; i < number_array.lenght-1 ; i++)
+		for(i = 1 ; i <= number_array.length-1 ; ++i)
 		{
 			if(Number(number_array[i]) > max)
 			{
