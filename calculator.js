@@ -5,17 +5,15 @@ function Calculator()
 	maximum = function(str)
 	{
 		array_to_string = str.toString()
-		console.log(array_to_string)
 		reg_ex = /(\d)/g
 		number_array = array_to_string.match(reg_ex)
-		console.log(number_array)
 		max = Number(number_array[0]);
 		for(i = 1 ; i <= number_array.length-1 ; ++i)
 		{
 			if(Number(number_array[i]) > max)
 			{
 				max = number_array[i]
-				console.log(max)
+				console.log("maximum no is:", max)
 			}
 		}
 		
@@ -38,7 +36,7 @@ function Calculator()
 	addition = function(str)
 	{
 		add = Number(str[0]) + parseInt(str[2] + Number(str[4]))
-		console.log(add)
+		console.log("addition is :", add)
 	}
 
 	substraction = function(str)
@@ -56,12 +54,11 @@ function Calculator()
 	this.evaluate = function(str)
 	{
 		arr = str.split(' ')	
-		console.log(arr)
-
+	
 		if(str.match(/[a-zA-z0-9]*\(.*\)/))
 		{
-			console.log("it is a function")
-			// round_function(arr);
+			// console.log("it is a function")
+			// // round_function(arr);
 			maximum(arr);
 		}
 
