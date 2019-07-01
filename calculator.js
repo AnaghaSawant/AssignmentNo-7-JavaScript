@@ -1,6 +1,12 @@
-var multiply,addition,substraction,division,round_function,maximum;
+var multiply,addition,substraction,division,round,maximum;
+var check;
 function Calculator()
 {
+	this.store = function(obj)
+	{
+		this.temp_key = Object.keys(obj).toString()
+		this.temp = Object.values(obj).toString()
+	}
 
 	maximum = function(str)
 	{
@@ -19,12 +25,14 @@ function Calculator()
 		
 	}
 
-	round_function = function(str)
+	round = function(str)
 	{
-		k = arr[0].match(/(\d\.\d)/)
-		str = k[0].toString()
-		h = str.split('.')
-		console.log(h[0])
+		decimal_array = str.toString()
+		reg_ex = /(\d\.\d)/g
+		whole_no = decimal_array.match(reg_ex)
+		no = Math.round(whole_no);
+		console.log("this is round value:",no)
+		
 	}
 
 	multiply = function(str)
@@ -42,32 +50,40 @@ function Calculator()
 	substraction = function(str)
 	{
 		sub = Number(str[0] - str[4])
-		console.log(sub)
+		console.log("substraction is : ", sub)
 	}
 
 	division = function(str)
 	{
 		div = Number(str[0] / str[4])
-		console.log(div)
+		// console.log("division is: ",div)
 	}
 
-	this.evaluate = function(str)
+	this.evaluate = function(str, obj)
 	{
 		arr = str.split(' ')	
-	
-		if(str.match(/[a-zA-z0-9]*\(.*\)/))
+		
+		if(obj)
 		{
-			// console.log("it is a function")
-			// // round_function(arr);
-			maximum(arr);
+			arr[0] = Object.values(obj)
 		}
 
-		// if(arr.includes('+') && arr.includes('*'))
-		// {
-		// 	var mul = multiply(arr);
-		// 	var sum = mul + addition(arr)
-		// 	console.log(sum)
-		// }
+		if(arr[0] == this.temp_key)
+		{
+			arr[0] = this.temp
+			console.log(this.temp)
+		}
+
+		if(this.temp >= arr[0])
+		{
+			check = true;
+			console.log("boolean value is:",check);
+		}
+
+		if(str.match(/[a-zA-z0-9]*\(.*\)/))
+		{
+			round(arr);
+		}
 
 		else if(arr[2] == '+')
 		{
@@ -90,10 +106,13 @@ function Calculator()
 }
 
 var calsy = new Calculator()
+// calsy.evaluate('maximum(2, 8)')
+calsy.evaluate('kiwi  +  5', {kiwi: 2})
 calsy.evaluate('9  +  3')
-calsy.evaluate('maximum(2, 8)')
-// calsy.evaluate('round(8.2)')
+// calsy.evaluate('maximum(2, 8)')
+calsy.evaluate('round(8.70)')
+calsy.store({peaches: 15})
+calsy.evaluate('peaches  -  5')
 // calsy.evaluate('9  +  3  * 2')
-// calsy.evaluate('kiwi + 5', kiwi: '2')
-
+calsy.evaluate('peach >= 15')
 
